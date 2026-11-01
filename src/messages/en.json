@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Home",
+    "inventory": "Inventory",
+    "contact": "Contact us",
+    "about": "About us",
+    "faq": "FAQ",
+    "login": "Login",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "home": {
+    "hero": {
+      "headline": "Shifting dreams into reality",
+      "cta": "Read more"
+    },
+    "segments": {
+      "jdm": {
+        "title": "JDM",
+        "cta": "Explore JDM"
+      },
+      "premium": {
+        "title": "Premium",
+        "cta": "Explore Premium"
+      }
+    },
+    "story": {
+      "eyebrow": "Our story",
+      "headline": "Built on trust, driven by passion",
+      "body": "FTJ Exports has spent over a decade sourcing rare and remarkable vehicles for collectors and enthusiasts across the globe. Every car we list is inspected, verified and ready for its next chapter.",
+      "cta": "Learn more about FTJ"
+    },
+    "fleet": {
+      "heading": "Featured Fleet",
+      "subheading": "A glimpse of what's currently in the showroom.",
+      "inquire": "Inquire",
+      "viewAll": "View full inventory",
+      "specs": {
+        "year": "YOM",
+        "model": "Model",
+        "engine": "Engine",
+        "displacement": "Displacement",
+        "transmission": "Transmission",
+        "fuelType": "Fuel type"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Shifting dreams into reality",
+    "links": {
+      "language": "Language",
+      "faq": "FAQ",
+      "siteMap": "Site map",
+      "contact": "Contact",
+      "legal": "Legal",
+      "newsletter": "News letter",
+      "complaints": "Complaints",
+      "sustainability": "Sustainability"
+    },
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved."
+  }
+}
