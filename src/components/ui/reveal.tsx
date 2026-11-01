@@ -16,6 +16,10 @@ const HIDDEN_TRANSFORM: Record<Direction, string> = {
  * down to it. Scrolling up only ever snaps it straight to its visible
  * state (no animation) so it's never left invisible on screen, but the
  * entrance animation itself is reserved for downward scrolling only.
+ *
+ * Direction is derived from the element's own bounding-rect position
+ * between observer callbacks (falling = scrolling down), so there's a
+ * single source of truth instead of a separate window scroll listener.
  */
 export function Reveal({
   children,
@@ -31,21 +35,7 @@ export function Reveal({
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [animate, setAnimate] = useState(true);
-  const lastScrollY = useRef(0);
-  const direction = useRef<"down" | "up">("down");
-
-  useEffect(() => {
-    lastScrollY.current = window.scrollY;
-
-    function onScroll() {
-      const y = window.scrollY;
-      direction.current = y >= lastScrollY.current ? "down" : "up";
-      lastScrollY.current = y;
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const lastTop = useRef<number | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -53,14 +43,18 @@ export function Reveal({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        const top = entry.boundingClientRect.top;
+        const scrollingDown = lastTop.current === null || top < lastTop.current;
+        lastTop.current = top;
+
         if (entry.isIntersecting) {
-          setAnimate(direction.current === "down");
+          setAnimate(scrollingDown);
           setVisible(true);
         } else {
           setVisible(false);
         }
       },
-      { threshold: 0.05, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.05 },
     );
     observer.observe(el);
     return () => observer.disconnect();

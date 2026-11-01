@@ -50,16 +50,21 @@ export function FleetCarousel({
 
   return (
     <div>
+      {/* touch-pan-x + touch-pan-y: horizontal drag moves the cards; the
+          track itself has no vertical scroll room (overflow-y-hidden), so
+          a vertical drag has nowhere to go here and bubbles up to scroll
+          the page instead. Allowing pan-y is what lets that bubbling
+          happen — pan-x alone blocks vertical touch gestures outright. */}
       <div
         ref={trackRef}
         onScroll={handleScroll}
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex touch-pan-x touch-pan-y snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {cars.map((car, index) => (
           <Reveal
             key={car.id}
             delayMs={index * 100}
-            className="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"
+            className="w-[85%] min-w-0 shrink-0 touch-pan-x touch-pan-y snap-start sm:w-[46%] lg:w-[31%]"
           >
             <CarCard car={car} inquireLabel={inquireLabel} specLabels={specLabels} />
           </Reveal>

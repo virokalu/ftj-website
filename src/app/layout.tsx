@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       lang={siteConfig.locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-ink">
+      <body className="flex min-h-full flex-col bg-ink" suppressHydrationWarning>
         <script {...jsonLdScriptProps(buildOrganizationJsonLd())} type="application/ld+json" />
         <NextIntlClientProvider messages={messages}>
           <SiteHeader />

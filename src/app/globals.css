@@ -54,6 +54,13 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* Prevent the browser's native image drag-ghost — it reads as elements
+   detaching/moving when a user clicks and drags across a card. */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -136,6 +143,33 @@ body {
 
 .animate-taillight-glow {
   animation: taillight-glow 3.2s ease-in-out infinite;
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.82);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  /* Default: fully visible. Below-the-fold elements must never depend on
+     JS or animation timing to become visible — only browsers that support
+     scroll-driven animations get the actual scale-in effect, below. */
+  opacity: 1;
+  transform: scale(1);
+}
+
+@supports (animation-timeline: view()) {
+  .animate-scale-in {
+    animation: scale-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 65%;
+  }
 }
 
 /* Shared warm red-to-orange gradient accent, used sparingly for emphasis. */

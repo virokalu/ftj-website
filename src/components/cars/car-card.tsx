@@ -37,14 +37,15 @@ export function CarCard({
   ];
 
   return (
-    <article className="flex h-full flex-col border border-border bg-surface">
-      <div className="relative aspect-4/3 w-full overflow-hidden">
+    <article className="flex h-full touch-pan-x touch-pan-y flex-col border border-border bg-surface select-none">
+      <div className="relative h-[220px] w-full overflow-hidden sm:h-[240px]">
         {cover ? (
           <Image
             src={cover.url}
             alt={cover.alt}
             fill
             priority={priority}
+            draggable={false}
             sizes="(min-width: 1024px) 380px, 85vw"
             className="object-cover"
           />
@@ -61,13 +62,13 @@ export function CarCard({
           <p className="mt-2 line-clamp-2 text-sm text-foreground-muted">{car.description}</p>
         )}
 
-        <dl className="mt-5 grid grid-cols-3 gap-x-4 gap-y-4">
+        <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
           {specs.map((spec) => (
-            <div key={spec.label}>
+            <div key={spec.label} className="min-w-0">
               <dt className="text-[10px] font-medium tracking-[0.12em] text-foreground-muted uppercase">
                 {spec.label}
               </dt>
-              <dd className="mt-1 text-sm font-semibold text-foreground">{spec.value}</dd>
+              <dd className="mt-1 text-sm font-semibold break-words text-foreground">{spec.value}</dd>
             </div>
           ))}
         </dl>

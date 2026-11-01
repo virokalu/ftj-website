@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { AccentDivider } from "@/components/ui/accent-divider";
 import { Container } from "@/components/ui/container";
 
 const SOCIAL_LINKS = [
@@ -38,7 +39,7 @@ export async function SiteFooter() {
 
   return (
     <footer className="bg-ink relative">
-      <div aria-hidden="true" className="bg-gradient-accent absolute inset-x-0 top-0 h-px opacity-60" />
+      <AccentDivider className="absolute inset-x-0 top-0 mx-6 sm:mx-10 lg:mx-16" />
       <Container className="flex flex-col gap-12 py-16 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p className="text-2xl font-bold tracking-[0.25em] text-foreground">
@@ -88,7 +89,8 @@ export async function SiteFooter() {
         </ul>
       </Container>
 
-      <Container className="flex flex-col gap-3 border-t border-white/10 py-6 text-xs text-foreground-muted sm:flex-row sm:items-center sm:justify-between">
+      <AccentDivider className="mx-6 sm:mx-10 lg:mx-16" />
+      <Container className="flex flex-col gap-3 py-6 text-xs text-foreground-muted sm:flex-row sm:items-center sm:justify-between">
         <p>
           &copy; {year} FTJ Exports. {t("rights")}
         </p>

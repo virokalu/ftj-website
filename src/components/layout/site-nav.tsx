@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { AccentDivider } from "@/components/ui/accent-divider";
 
 type NavItem = { href: string; label: string };
 
@@ -66,22 +67,7 @@ export function SiteNav({
             <span className="hidden sm:inline">{loginLabel}</span>
           </Link>
         </div>
-        <div aria-hidden="true" className="relative mx-12 h-px sm:mx-24 lg:mx-40">
-          <div
-            className="absolute inset-x-0 top-1/2 h-2 -translate-y-1/2 opacity-10 blur-sm"
-            style={{
-              backgroundImage:
-                "linear-gradient(90deg, transparent 0%, #8a0b14 18%, #b35910 50%, #8a0b14 82%, transparent 100%)",
-            }}
-          />
-          <div
-            className="relative h-px opacity-35"
-            style={{
-              backgroundImage:
-                "linear-gradient(90deg, transparent 0%, #8a0b14 18%, #b35910 50%, #8a0b14 82%, transparent 100%)",
-            }}
-          />
-        </div>
+        <AccentDivider className="mx-12 sm:mx-24 lg:mx-40" />
       </header>
 
       {open && (
