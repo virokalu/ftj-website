@@ -45,6 +45,28 @@
       }
     }
   },
+  "inventory": {
+    "heading": "Choose your vehicle",
+    "availableWord": "Available",
+    "sortBy": "Sort by",
+    "sort": {
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "brandAsc": "Brand A–Z",
+      "priceAsc": "Price: Low to high",
+      "priceDesc": "Price: High to low"
+    },
+    "filter": {
+      "heading": "Filter",
+      "clearAll": "Clear all",
+      "price": "Price range",
+      "category": "Category",
+      "brand": "Brand",
+      "transmission": "Transmission",
+      "fuelType": "Fuel type"
+    },
+    "empty": "No vehicles match your filters."
+  },
   "footer": {
     "tagline": "Shifting dreams into reality",
     "links": {

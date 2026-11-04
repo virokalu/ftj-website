@@ -22,6 +22,7 @@ export const FEATURED_CARS: WebsiteCar[] = [
       "Track-homologated and road legal: a naturally aspirated V10 flagship built for a buyer who wants presence on every street.",
     photos: [{ url: "/images/cars/fleet-1.jpg", alt: "Matte grey Lamborghini Huracán STO, front three-quarter view" }],
     featured: true,
+    price: { amount: 142_000_000, currency: "LKR" },
   },
   {
     id: "featured-2",
@@ -38,6 +39,7 @@ export const FEATURED_CARS: WebsiteCar[] = [
       "The hardcore, naturally aspirated send-off to the 458 line: razor-sharp throttle response and a soundtrack to match.",
     photos: [{ url: "/images/cars/fleet-2.jpg", alt: "Ferrari 458 Speciale with tricolor side livery, parked at night" }],
     featured: true,
+    price: { amount: 68_000_000, currency: "LKR" },
   },
   {
     id: "featured-3",
@@ -54,6 +56,7 @@ export const FEATURED_CARS: WebsiteCar[] = [
       "Godzilla: a motorsport-bred chassis and all-wheel drive launch control built for the road.",
     photos: [{ url: "/images/cars/fleet-3.jpg", alt: "Black Nissan GT-R, rear three-quarter view" }],
     featured: true,
+    price: null,
   },
   {
     id: "featured-4",
@@ -70,5 +73,6 @@ export const FEATURED_CARS: WebsiteCar[] = [
       "McLaren's Longtail treatment: lighter, faster and sharper, with carbon fibre throughout and dihedral doors.",
     photos: [{ url: "/images/cars/fleet-4.jpg", alt: "McLaren 765LT with doors open, side profile" }],
     featured: true,
+    price: { amount: 195_000_000, currency: "LKR" },
   },
 ];

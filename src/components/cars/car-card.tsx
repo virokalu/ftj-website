@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { WebsiteCar } from "@/lib/cars/types";
+import { AccentDivider } from "@/components/ui/accent-divider";
+import { formatPrice } from "@/lib/cars/format-price";
 
 type SpecLabels = {
   year: string;
@@ -37,7 +39,7 @@ export function CarCard({
   ];
 
   return (
-    <article className="flex h-full touch-pan-x touch-pan-y flex-col border border-border bg-surface select-none">
+    <article className="group flex h-full touch-pan-x touch-pan-y flex-col border border-border bg-surface select-none">
       <div className="relative h-[220px] w-full overflow-hidden sm:h-[240px]">
         {cover ? (
           <Image
@@ -47,7 +49,7 @@ export function CarCard({
             priority={priority}
             draggable={false}
             sizes="(min-width: 1024px) 380px, 85vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         ) : (
           <div className="h-full w-full bg-surface-raised" aria-hidden="true" />
@@ -58,11 +60,12 @@ export function CarCard({
         <h3 className="text-lg font-semibold tracking-tight text-foreground">
           {car.brand} <span className="text-gradient-accent">{car.model}</span>
         </h3>
+        <p className="mt-1 text-sm font-semibold tracking-wide text-accent">{formatPrice(car.price)}</p>
         {car.description && (
           <p className="mt-2 line-clamp-2 text-sm text-foreground-muted">{car.description}</p>
         )}
 
-        <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
+        <dl className="mt-5 grid grid-cols-3 gap-x-3 gap-y-4">
           {specs.map((spec) => (
             <div key={spec.label} className="min-w-0">
               <dt className="text-[10px] font-medium tracking-[0.12em] text-foreground-muted uppercase">
@@ -73,10 +76,11 @@ export function CarCard({
           ))}
         </dl>
 
-        <div className="mt-6 border-t border-border pt-4">
+        <div className="mt-6">
+          <AccentDivider />
           <Link
             href={`/contact?vehicle=${car.slug}`}
-            className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] text-foreground uppercase transition-colors hover:text-accent"
+            className="mt-4 flex items-center justify-between text-xs font-semibold tracking-[0.15em] text-foreground uppercase transition-colors hover:text-accent"
           >
             {inquireLabel}
             <span
