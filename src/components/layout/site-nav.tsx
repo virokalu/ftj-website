@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AccentDivider } from "@/components/ui/accent-divider";
 
 type NavItem = { href: string; label: string };
@@ -19,6 +20,7 @@ export function SiteNav({
 }) {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!open) return;
@@ -31,6 +33,8 @@ export function SiteNav({
     panelRef.current?.querySelector<HTMLElement>("a")?.focus();
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
+
+  const allItems: NavItem[] = [...items, { href: "/login", label: loginLabel }];
 
   return (
     <>
@@ -70,48 +74,69 @@ export function SiteNav({
         <AccentDivider className="mx-12 sm:mx-24 lg:mx-40" />
       </header>
 
-      {open && (
+      {/* Always mounted (rather than conditionally rendered) so the panel
+          can slide-transition in/out instead of just popping on/off. */}
+      <div
+        role="dialog"
+        aria-modal={open}
+        aria-hidden={!open}
+        aria-label={menuLabel}
+        className={`fixed inset-0 z-[60] bg-ink/40 transition-opacity duration-700 ease-out ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setOpen(false)}
+      >
+        {/* Partial-width panel on the left; the hero page stays visible,
+            just dimmed, in the remaining space to the right (client ref:
+            doc/design/ftj-client-design-p04-menu-overlay.png). Slides in
+            from off-screen left rather than appearing instantly. */}
         <div
           ref={panelRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label={menuLabel}
-          className="fixed inset-0 z-[60] flex flex-col bg-ink"
+          onClick={(event) => event.stopPropagation()}
+          className={`relative flex h-full w-full flex-col bg-ink/65 backdrop-blur-sm transition-transform duration-700 ease-out sm:w-[60%] md:w-[48%] lg:w-[42%] ${
+            open ? "translate-x-0" : "-translate-x-full"
+          }`}
         >
-          <div className="flex h-20 items-center justify-end px-6 sm:px-10 lg:px-16">
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-2 text-sm font-medium tracking-[0.2em] text-foreground uppercase transition-colors hover:text-accent"
-            >
-              {closeLabel}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M2 2l12 12M14 2 2 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-              </svg>
-            </button>
-          </div>
-
-          <nav aria-label="Primary" className="flex flex-1 flex-col items-center justify-center gap-6">
-            {items.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
+            <div className="flex items-center gap-2 px-12 pt-10 sm:px-24 sm:pt-12 lg:px-40 lg:pt-16">
+              <button
+                type="button"
                 onClick={() => setOpen(false)}
-                className="text-3xl font-semibold tracking-tight text-foreground transition-colors hover:text-accent sm:text-4xl"
+                className="flex items-center gap-2 text-sm font-medium tracking-[0.2em] text-foreground uppercase transition-colors hover:text-accent"
               >
-                {item.label}
-              </Link>
-            ))}
-            <Link
-              href="/login"
-              onClick={() => setOpen(false)}
-              className="mt-4 text-sm font-medium tracking-[0.2em] text-accent uppercase"
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M2 2l12 12M14 2 2 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                </svg>
+                {closeLabel}
+              </button>
+            </div>
+
+            <nav
+              aria-label="Primary"
+              className="flex flex-1 flex-col items-end justify-center gap-10 pr-10 pl-6 sm:gap-11 sm:pr-16 lg:gap-12 lg:pr-24"
             >
-              {loginLabel}
-            </Link>
-          </nav>
+              {allItems.map((item, index) => {
+                const active = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    style={{
+                      transition: `color 200ms ease-out, opacity 600ms ease-out ${
+                        open ? 400 + index * 90 : 0
+                      }ms, translate 600ms ease-out ${open ? 400 + index * 90 : 0}ms`,
+                    }}
+                    className={`inline-block w-fit text-lg font-medium tracking-[0.12em] uppercase hover:text-accent sm:text-xl ${
+                      open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+                    } ${active ? "text-foreground" : "text-foreground-muted"}`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
         </div>
-      )}
     </>
   );
 }
