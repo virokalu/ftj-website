@@ -40,7 +40,7 @@ export function CarCard({
 
   return (
     <article className="group flex h-full touch-pan-x touch-pan-y flex-col border border-border bg-surface select-none">
-      <div className="relative h-[220px] w-full overflow-hidden sm:h-[240px]">
+      <Link href={`/inventory/${car.slug}`} className="relative block h-[220px] w-full overflow-hidden sm:h-[240px]">
         {cover ? (
           <Image
             src={cover.url}
@@ -54,11 +54,13 @@ export function CarCard({
         ) : (
           <div className="h-full w-full bg-surface-raised" aria-hidden="true" />
         )}
-      </div>
+      </Link>
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="text-lg font-semibold tracking-tight text-foreground">
-          {car.brand} <span className="text-gradient-accent">{car.model}</span>
+          <Link href={`/inventory/${car.slug}`} className="transition-colors hover:text-accent">
+            {car.brand} <span className="text-gradient-accent">{car.model}</span>
+          </Link>
         </h3>
         <p className="mt-1 text-sm font-semibold tracking-wide text-accent">{formatPrice(car.price)}</p>
         {car.description && (

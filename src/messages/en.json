@@ -67,6 +67,12 @@
     },
     "empty": "No vehicles match your filters."
   },
+  "carDetail": {
+    "performanceHeading": "Performance",
+    "performanceCaption": "Specifications and performance details for this vehicle.",
+    "coloursHeading": "Colours",
+    "backToInventory": "Back to inventory"
+  },
   "footer": {
     "tagline": "Shifting dreams into reality",
     "links": {

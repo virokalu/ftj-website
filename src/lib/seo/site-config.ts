@@ -8,7 +8,7 @@ export const siteConfig = {
   fullName: "FTJ Exports",
   tagline: "Shifting dreams into reality",
   description:
-    "FTJ Exports sources and ships premium and JDM vehicles worldwide. Browse the showroom and inquire — no prices, no pressure, just the right car.",
+    "FTJ Exports sources and ships premium and JDM vehicles worldwide. Browse the showroom and inquire about any car in stock.",
   // TO CONFIRM: real production origin. Falls back to localhost in dev.
   url: process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "http://localhost:3000",
   locale: "en",

@@ -23,6 +23,7 @@ export const FEATURED_CARS: WebsiteCar[] = [
     photos: [{ url: "/images/cars/fleet-1.jpg", alt: "Matte grey Lamborghini Huracán STO, front three-quarter view" }],
     featured: true,
     price: { amount: 142_000_000, currency: "LKR" },
+    colour: "Matte Grey",
   },
   {
     id: "featured-2",
@@ -40,6 +41,7 @@ export const FEATURED_CARS: WebsiteCar[] = [
     photos: [{ url: "/images/cars/fleet-2.jpg", alt: "Ferrari 458 Speciale with tricolor side livery, parked at night" }],
     featured: true,
     price: { amount: 68_000_000, currency: "LKR" },
+    colour: "Rosso Corsa Red",
   },
   {
     id: "featured-3",
@@ -57,6 +59,7 @@ export const FEATURED_CARS: WebsiteCar[] = [
     photos: [{ url: "/images/cars/fleet-3.jpg", alt: "Black Nissan GT-R, rear three-quarter view" }],
     featured: true,
     price: null,
+    colour: "Black",
   },
   {
     id: "featured-4",
@@ -74,5 +77,6 @@ export const FEATURED_CARS: WebsiteCar[] = [
     photos: [{ url: "/images/cars/fleet-4.jpg", alt: "McLaren 765LT with doors open, side profile" }],
     featured: true,
     price: { amount: 195_000_000, currency: "LKR" },
+    colour: "Papaya Orange",
   },
 ];

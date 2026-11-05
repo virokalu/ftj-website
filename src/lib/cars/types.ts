@@ -21,6 +21,7 @@ export const WebsiteCarSchema = z.object({
   photos: z.array(z.object({ url: z.string(), alt: z.string() })),
   featured: z.boolean(),
   price: z.object({ amount: z.number().int(), currency: z.string() }).nullable(),
+  colour: z.string().nullable(),
 });
 
 export type WebsiteCar = z.infer<typeof WebsiteCarSchema>;
