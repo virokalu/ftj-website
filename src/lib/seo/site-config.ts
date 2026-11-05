@@ -12,4 +12,10 @@ export const siteConfig = {
   // TO CONFIRM: real production origin. Falls back to localhost in dev.
   url: process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "http://localhost:3000",
   locale: "en",
+  // From the client's contact mockup (p10-contact.png) — open question #7
+  // asks FTJ to confirm these are real before launch.
+  phone: "+81 80-3242-4671",
+  email: "fakir@ftj.com",
+  addressLocality: "Yokohama, Kanagawa",
+  addressCountry: "Japan",
 } as const;

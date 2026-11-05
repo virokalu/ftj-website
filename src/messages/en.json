@@ -73,6 +73,44 @@
     "coloursHeading": "Colours",
     "backToInventory": "Back to inventory"
   },
+  "contact": {
+    "hero": {
+      "heading": "FTJ Headquarters Japan",
+      "address": "Yokohama, Kanagawa, Japan"
+    },
+    "info": {
+      "phoneLabel": "Telephone number",
+      "emailLabel": "Email",
+      "hours": "Our customer service is available as follows: from Monday to Friday, from 8:30 to 19:00 (CET). Saturday from 09:00 to 13:00 (CET). Contact our customer care service reserved for Ferrari clients and official dealers to receive information on services available.",
+      "getInTouch": "Get in touch"
+    },
+    "form": {
+      "heading": "Request a call?",
+      "close": "Close",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Telephone number",
+      "country": "Country",
+      "message": "Message",
+      "website": "Leave this field blank",
+      "submit": "Request",
+      "privacyNotice": "We only use these details to answer your enquiry.",
+      "privacyLink": "Privacy Policy",
+      "errors": {
+        "required": "This field is required.",
+        "invalidEmail": "Enter a valid email address.",
+        "invalidPhone": "Enter a valid phone number.",
+        "tooShort": "Please add a little more detail.",
+        "tooLong": "That's too long — please shorten it."
+      },
+      "states": {
+        "submitting": "Sending…",
+        "success": "Thank you. We have received your enquiry and will be in touch.",
+        "generalError": "Something went wrong with that submission. Please try again.",
+        "networkError": "We could not send your enquiry. Please try again, or contact us directly."
+      }
+    }
+  },
   "footer": {
     "tagline": "Shifting dreams into reality",
     "links": {

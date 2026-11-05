@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 /*
  * FTJ brand tokens, taken from the client design PDF
@@ -145,30 +146,23 @@ img {
   animation: taillight-glow 3.2s ease-in-out infinite;
 }
 
-@keyframes scale-in {
-  from {
-    transform: scale(0.82);
-    opacity: 0;
+/*
+ * JS entrance animations (GSAP intro + hero TextReveal) render their target
+ * with [data-anim-pending]; it stays hidden until the animation has applied
+ * its start state and removes the attribute, so there's no flash of the
+ * final layout before hydration. Only when scripting is on and motion is
+ * allowed — and a fail-safe reveals it after 2.5s if JS never runs.
+ */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-anim-pending] {
+    visibility: hidden;
+    animation: anim-pending-failsafe 0s linear 2.5s forwards;
   }
+}
+
+@keyframes anim-pending-failsafe {
   to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.animate-scale-in {
-  /* Default: fully visible. Below-the-fold elements must never depend on
-     JS or animation timing to become visible — only browsers that support
-     scroll-driven animations get the actual scale-in effect, below. */
-  opacity: 1;
-  transform: scale(1);
-}
-
-@supports (animation-timeline: view()) {
-  .animate-scale-in {
-    animation: scale-in linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 65%;
+    visibility: visible;
   }
 }
 
@@ -182,4 +176,30 @@ img {
 
 .bg-gradient-accent {
   background-image: var(--gradient-accent);
+}
+
+/* Thin, semi-transparent scrollbar for the glassy overlay panels (menu,
+   request-a-call) — a soft white thumb that suits their backdrop-blur
+   panels better than a solid colour would, instead of the browser default. */
+.scrollbar-glass {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+.scrollbar-glass::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-glass::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-glass::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.scrollbar-glass::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.45);
 }

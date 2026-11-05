@@ -4,8 +4,11 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { MotionProvider } from "@/components/providers/motion-provider";
+import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { siteConfig } from "@/lib/seo/site-config";
 import { buildOrganizationJsonLd, jsonLdScriptProps } from "@/lib/seo/json-ld";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -38,9 +41,13 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col bg-ink" suppressHydrationWarning>
         <script {...jsonLdScriptProps(buildOrganizationJsonLd())} type="application/ld+json" />
         <NextIntlClientProvider messages={messages}>
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
+          <MotionProvider>
+            <SmoothScroll>
+              <SiteHeader />
+              <main className="flex-1">{children}</main>
+              <SiteFooter />
+            </SmoothScroll>
+          </MotionProvider>
         </NextIntlClientProvider>
       </body>
     </html>

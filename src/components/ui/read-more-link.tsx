@@ -14,7 +14,7 @@ export function ReadMoreLink({
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center gap-3 text-sm font-medium tracking-wide uppercase transition-colors hover:text-accent ${toneClasses}`}
+      className={`group inline-flex items-center gap-3 text-sm font-medium tracking-wide uppercase transition-[color,scale] duration-300 ease-out hover:text-accent motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] ${toneClasses}`}
     >
       {children}
       <span

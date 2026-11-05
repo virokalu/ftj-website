@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/container";
 import { FleetCarousel } from "@/components/home/fleet-carousel";
 import { ReadMoreLink } from "@/components/ui/read-more-link";
+import { FadeIn } from "@/components/animations/fade-in";
 import { getFeaturedCars } from "@/lib/cars/get-featured-cars";
 
 export async function FeaturedFleet() {
@@ -12,12 +13,12 @@ export async function FeaturedFleet() {
   return (
     <section id="featured-fleet" className="bg-ink py-24 sm:py-32">
       <Container>
-        <div className="text-center">
+        <FadeIn className="text-center">
           <h2 className="text-gradient-accent text-2xl font-semibold tracking-[0.15em] uppercase sm:text-3xl">
             {t("heading")}
           </h2>
           <p className="mt-3 text-sm text-foreground-muted">{t("subheading")}</p>
-        </div>
+        </FadeIn>
 
         <div className="mt-14">
           <FleetCarousel

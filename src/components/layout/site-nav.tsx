@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AccentDivider } from "@/components/ui/accent-divider";
+import { ANIM_PENDING_ATTR, MOTION_OK, gsap, useGSAP } from "@/lib/animations/gsap";
 
 type NavItem = { href: string; label: string };
 
@@ -20,7 +21,27 @@ export function SiteNav({
 }) {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+
+  // Page-load intro (runs once — the header lives in the root layout): the
+  // bar slides down, then the logo letters F, T, J scale in one by one.
+  useGSAP(
+    () => {
+      const header = headerRef.current;
+      if (!header) return;
+
+      gsap.matchMedia().add(MOTION_OK, () => {
+        gsap
+          .timeline({ defaults: { ease: "power3.out" } })
+          .from(header, { yPercent: -100, autoAlpha: 0, duration: 0.7 })
+          .from("[data-logo-letter]", { autoAlpha: 0, scale: 0.6, duration: 0.5, stagger: 0.12 }, "-=0.35");
+      });
+
+      header.removeAttribute(ANIM_PENDING_ATTR);
+    },
+    { scope: headerRef },
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -29,16 +50,31 @@ export function SiteNav({
       if (event.key === "Escape") setOpen(false);
     }
 
+    // Lock the page behind the overlay so a scroll gesture over the panel
+    // can't chain up and scroll the page once the panel has no more room to
+    // scroll. The scrolling box is <html>, not <body>, in this layout, so
+    // both need locking. data-lenis-prevent (below) only stops Lenis from
+    // hijacking the gesture — it doesn't stop native scroll-chaining, which
+    // is why this lock is still needed on top of it.
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
     document.addEventListener("keydown", onKeyDown);
     panelRef.current?.querySelector<HTMLElement>("a")?.focus();
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+    };
   }, [open]);
 
   const allItems: NavItem[] = [...items, { href: "/login", label: loginLabel }];
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-50">
+      <header ref={headerRef} className="absolute inset-x-0 top-0 z-50" {...{ [ANIM_PENDING_ATTR]: "" }}>
         <div className="relative flex h-20 items-center justify-between px-12 sm:px-24 lg:px-40">
           <button
             type="button"
@@ -57,12 +93,20 @@ export function SiteNav({
             href="/"
             className="absolute left-1/2 -translate-x-1/2 text-xl font-bold tracking-[0.25em] text-foreground"
           >
-            FT<span className="text-gradient-accent">J</span>
+            <span data-logo-letter className="inline-block">
+              F
+            </span>
+            <span data-logo-letter className="inline-block">
+              T
+            </span>
+            <span data-logo-letter className="text-gradient-accent inline-block">
+              J
+            </span>
           </Link>
 
           <Link
             href="/login"
-            className="flex items-center gap-1.5 text-sm font-medium tracking-[0.15em] text-foreground uppercase transition-colors hover:text-accent"
+            className="relative flex items-center gap-1.5 text-sm font-medium tracking-[0.15em] text-foreground uppercase transition-colors after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 after:ease-out hover:text-accent hover:after:scale-x-100"
           >
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <circle cx="8" cy="5" r="3" stroke="currentColor" strokeWidth="1.3" />
@@ -92,6 +136,7 @@ export function SiteNav({
             from off-screen left rather than appearing instantly. */}
         <div
           ref={panelRef}
+          data-lenis-prevent
           onClick={(event) => event.stopPropagation()}
           className={`relative flex h-full w-full flex-col bg-ink/65 backdrop-blur-sm transition-transform duration-700 ease-out sm:w-[60%] md:w-[48%] lg:w-[42%] ${
             open ? "translate-x-0" : "-translate-x-full"
@@ -126,7 +171,7 @@ export function SiteNav({
                         open ? 400 + index * 90 : 0
                       }ms, translate 600ms ease-out ${open ? 400 + index * 90 : 0}ms`,
                     }}
-                    className={`inline-block w-fit text-lg font-medium tracking-[0.12em] uppercase hover:text-accent sm:text-xl ${
+                    className={`relative inline-block w-fit text-lg font-medium tracking-[0.12em] uppercase after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-right after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 after:ease-out hover:text-accent hover:after:scale-x-100 sm:text-xl ${
                       open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
                     } ${active ? "text-foreground" : "text-foreground-muted"}`}
                   >

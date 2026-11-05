@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { CarCard } from "@/components/cars/car-card";
+import { Counter } from "@/components/animations/counter";
 import { Reveal } from "@/components/ui/reveal";
 import { FilterSection } from "@/components/inventory/filter-section";
 import { CheckboxOption } from "@/components/inventory/checkbox-option";
@@ -71,6 +73,8 @@ export function InventoryBrowser({ cars, labels }: { cars: WebsiteCar[]; labels:
   const [transmissions, setTransmissions] = useState<Set<string>>(new Set());
   const [fuelTypes, setFuelTypes] = useState<Set<string>>(new Set());
   const [sort, setSort] = useState<SortValue>("newest");
+  // Cards glide to their new spots when filters/sort change (respects reduced motion).
+  const [gridRef] = useAutoAnimate<HTMLDivElement>({ duration: 350, easing: "ease-out" });
 
   const facets = useMemo(
     () => ({
@@ -195,7 +199,7 @@ export function InventoryBrowser({ cars, labels }: { cars: WebsiteCar[]; labels:
               {labels.heading}
             </h1>
             <p className="mt-2 text-xs font-medium tracking-[0.15em] text-foreground-muted uppercase">
-              {filtered.length} {labels.availableWord}
+              <Counter value={filtered.length} /> {labels.availableWord}
             </p>
           </div>
 
@@ -216,7 +220,7 @@ export function InventoryBrowser({ cars, labels }: { cars: WebsiteCar[]; labels:
         {filtered.length === 0 ? (
           <p className="mt-16 text-sm text-foreground-muted">{labels.empty}</p>
         ) : (
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+          <div ref={gridRef} className="mt-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
             {filtered.map((car, index) => (
               <Reveal key={car.id} delayMs={(index % 3) * 100}>
                 <CarCard car={car} inquireLabel={labels.inquire} specLabels={labels.specs} priority={index < 3} />

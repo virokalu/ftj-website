@@ -39,7 +39,9 @@ export function CarCard({
   ];
 
   return (
-    <article className="group flex h-full touch-pan-x touch-pan-y flex-col border border-border bg-surface select-none">
+    // Hover lift: `translate` moves the card, and the red-tinted shadow lives
+    // on ::after so only its opacity animates (no box-shadow repaints).
+    <article className="group relative flex h-full touch-pan-x touch-pan-y flex-col border border-border bg-surface transition-[translate] duration-500 ease-out select-none after:pointer-events-none after:absolute after:inset-0 after:opacity-0 after:shadow-[0_22px_40px_-22px_rgba(224,16,32,0.45)] after:transition-opacity after:duration-500 motion-safe:hover:-translate-y-1 hover:after:opacity-100">
       <Link href={`/inventory/${car.slug}`} className="relative block h-[220px] w-full overflow-hidden sm:h-[240px]">
         {cover ? (
           <Image

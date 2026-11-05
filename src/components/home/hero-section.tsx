@@ -4,6 +4,8 @@ import { Container } from "@/components/ui/container";
 import { ReadMoreLink } from "@/components/ui/read-more-link";
 import { SlideDots } from "@/components/ui/slide-dots";
 import { HeroCursorGlow } from "@/components/home/hero-cursor-glow";
+import { Parallax } from "@/components/animations/parallax";
+import { TextReveal } from "@/components/animations/text-reveal";
 
 export async function HeroSection() {
   const t = await getTranslations("home.hero");
@@ -11,16 +13,18 @@ export async function HeroSection() {
 
   return (
     <section className="relative flex h-screen items-end overflow-hidden bg-ink pb-16">
-      <div className="absolute inset-0 animate-ken-burns">
-        <Image
-          src="/images/cars/ferrari2.jpg"
-          alt="A red Ferrari parked outside a modern glass office building, rear three-quarter view"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </div>
+      <Parallax className="absolute inset-0" start="top top" amount={15}>
+        <div className="absolute inset-0 animate-ken-burns">
+          <Image
+            src="/images/cars/ferrari2.jpg"
+            alt="A red Ferrari parked outside a modern glass office building, rear three-quarter view"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      </Parallax>
 
       {/* Taillight glow accents, positioned over the car's rear lights in ferrari2.jpg */}
       <div
@@ -64,23 +68,24 @@ export async function HeroSection() {
       </div>
 
       <Container className="relative text-center">
-        <h1
+        <TextReveal
+          as="h1"
+          delay={0.3}
           className="mx-auto max-w-5xl text-xl font-semibold tracking-[0.06em] text-foreground uppercase text-balance sm:text-2xl lg:text-4xl"
           style={{ textShadow: "0 2px 18px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.5)" }}
         >
           {headlineWords.map((word, index) => (
             <span
               key={index}
-              className={`animate-fade-up inline-block ${
-                index < headlineWords.length - 1 ? "mr-2 sm:mr-3" : ""
-              } ${index === headlineWords.length - 1 ? "text-gradient-accent" : ""}`}
-              style={{ animationDelay: `${300 + index * 120}ms` }}
+              className={`inline-block ${index < headlineWords.length - 1 ? "mr-2 sm:mr-3" : ""} ${
+                index === headlineWords.length - 1 ? "text-gradient-accent" : ""
+              }`}
             >
               {word}
               {index < headlineWords.length - 1 ? " " : ""}
             </span>
           ))}
-        </h1>
+        </TextReveal>
         <div className="animate-fade-up mt-5 flex justify-center [animation-delay:950ms]">
           <ReadMoreLink href="#featured-fleet">{t("cta")}</ReadMoreLink>
         </div>

@@ -4,6 +4,8 @@ import { Container } from "@/components/ui/container";
 import { ReadMoreLink } from "@/components/ui/read-more-link";
 import { SlideDots } from "@/components/ui/slide-dots";
 import { TextHoverReveal } from "@/components/ui/text-hover-reveal";
+import { FadeIn } from "@/components/animations/fade-in";
+import { ImageReveal } from "@/components/animations/image-reveal";
 
 export async function StorySection() {
   const t = await getTranslations("home.story");
@@ -15,7 +17,7 @@ export async function StorySection() {
           <div aria-hidden="true" className="hidden pt-2 text-on-paper-muted sm:block">
             <SlideDots count={3} activeIndex={0} />
           </div>
-          <div className="flex flex-col gap-6">
+          <FadeIn className="flex flex-col gap-6">
             <h2 className="max-w-md">
               <TextHoverReveal
                 textClassName="block text-3xl leading-snug font-semibold tracking-tight text-foreground sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-tight"
@@ -31,10 +33,10 @@ export async function StorySection() {
                 {t("cta")}
               </ReadMoreLink>
             </div>
-          </div>
+          </FadeIn>
         </div>
 
-        <div className="animate-scale-in relative h-[420px] w-full overflow-hidden sm:ml-auto sm:h-[480px] sm:max-w-lg lg:h-[560px]">
+        <ImageReveal className="relative h-[420px] w-full overflow-hidden sm:ml-auto sm:h-[480px] sm:max-w-lg lg:h-[560px]">
           <Image
             src="/images/cars/lambo.jpg"
             alt="A grey Lamborghini Huracán, rear three-quarter view"
@@ -42,7 +44,7 @@ export async function StorySection() {
             sizes="(min-width: 1024px) 32rem, 90vw"
             className="object-cover object-[center_70%]"
           />
-        </div>
+        </ImageReveal>
       </Container>
     </section>
   );

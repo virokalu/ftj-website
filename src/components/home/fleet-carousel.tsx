@@ -54,11 +54,13 @@ export function FleetCarousel({
           track itself has no vertical scroll room (overflow-y-hidden), so
           a vertical drag has nowhere to go here and bubbles up to scroll
           the page instead. Allowing pan-y is what lets that bubbling
-          happen — pan-x alone blocks vertical touch gestures outright. */}
+          happen — pan-x alone blocks vertical touch gestures outright.
+          -mt-2 pt-2: headroom so the card hover-lift isn't clipped by
+          overflow-y-hidden, with no net change to the layout. */}
       <div
         ref={trackRef}
         onScroll={handleScroll}
-        className="flex touch-pan-x touch-pan-y snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mt-2 flex touch-pan-x touch-pan-y snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth pt-2 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {cars.map((car, index) => (
           <Reveal

@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export function CarGallery({ photos }: { photos: Array<{ url: string; alt: string }> }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  // Thumbnails swap smoothly when a different photo becomes the main one.
+  const [thumbsRef] = useAutoAnimate<HTMLDivElement>({ duration: 300, easing: "ease-out" });
 
   if (photos.length === 0) {
     return <div className="h-[440px] w-full bg-surface-raised sm:h-[620px]" aria-hidden="true" />;
@@ -32,7 +35,7 @@ export function CarGallery({ photos }: { photos: Array<{ url: string; alt: strin
       </div>
 
       {thumbnails.length > 0 && (
-        <div className="grid gap-1 sm:grid-rows-2">
+        <div ref={thumbsRef} className="grid gap-1 sm:grid-rows-2">
           {thumbnails.map(({ photo, index }) => (
             <button
               key={photo.url}

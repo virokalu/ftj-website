@@ -186,7 +186,7 @@ async function CarDetailContent({ params }: { params: Promise<Params> }) {
               <AccentDivider />
               <Link
                 href={`/contact?vehicle=${car.slug}`}
-                className="group mt-8 inline-flex items-center gap-4 text-sm font-semibold tracking-[0.2em] text-foreground uppercase transition-colors hover:text-accent"
+                className="group mt-8 inline-flex items-center gap-4 text-sm font-semibold tracking-[0.2em] text-foreground uppercase transition-[color,scale] duration-300 ease-out hover:text-accent motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
               >
                 {tf("inquire")}
                 <span
