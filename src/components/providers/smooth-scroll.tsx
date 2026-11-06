@@ -10,7 +10,13 @@ import { gsap, ScrollTrigger } from "@/lib/animations/gsap";
  * Skipped entirely for users who prefer reduced motion (native scrolling).
  *
  * Scrollable overlays (menu panel, enquiry panel) opt out with the
- * `data-lenis-prevent` attribute so they keep native scrolling.
+ * `data-lenis-prevent` attribute so they keep native scrolling. They also
+ * lock <html>/<body> to overflow:hidden themselves while open — deliberately
+ * NOT using Lenis's own `autoToggle` for that, since autoToggle makes Lenis
+ * read and write that same `overflow` property too. Two systems fighting
+ * over one CSS property left Lenis's internal stopped/started state out of
+ * sync with reality, which showed up as the native scrollbar vanishing at
+ * odd times (e.g. scrolling near the footer) even with no overlay open.
  */
 export function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -22,10 +28,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       // Kill leftover wheel momentum when a link is clicked, so the next
       // page doesn't keep gliding after the router scrolls it to the top.
       stopInertiaOnNavigate: true,
-      // Pause while <html> is overflow:hidden (the menu / enquiry overlays
-      // lock page scroll that way), otherwise Lenis would still scroll the
-      // page behind them programmatically.
-      autoToggle: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
