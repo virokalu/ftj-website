@@ -111,6 +111,26 @@
       }
     }
   },
+  "about": {
+    "hero": {
+      "heading": "About Us"
+    },
+    "intro": "FTJ Exports connects collectors and enthusiasts worldwide with exceptional vehicles — sourced, inspected and shipped with uncompromising care.",
+    "values": {
+      "sectionHeading": "Our Values",
+      "headline": "Trust, built one car at a time",
+      "body": "Every vehicle in our showroom is personally inspected and verified before it reaches you. We believe a good deal is built on honesty, not pressure — no hidden fees, no surprises, just the right car and a straightforward process from inquiry to delivery."
+    },
+    "passion": {
+      "headline": "Built for speed, driven by passion",
+      "body": "Our team lives and breathes performance cars. That passion shows in how we source, describe and present every vehicle — with the detail and respect each one deserves."
+    },
+    "shipping": {
+      "headline": "Shipping, handled end to end",
+      "body": "From first inquiry to the moment your car arrives, we manage every step — paperwork, logistics and customs — so you don't have to.",
+      "cta": "Read more"
+    }
+  },
   "footer": {
     "tagline": "Shifting dreams into reality",
     "links": {

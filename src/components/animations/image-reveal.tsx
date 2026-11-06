@@ -4,9 +4,10 @@ import { useRef, type ReactNode } from "react";
 import { gsap, MOTION_OK, useGSAP } from "@/lib/animations/gsap";
 
 /**
- * Showcase image wrapper. Desktop: a bottom-to-top clip-path reveal the
- * first time it scrolls into view, plus a gentle scrubbed parallax on the
- * image inside. Mobile: a light fade only. Reduced motion: static.
+ * Showcase image wrapper. Desktop: a bottom-to-top clip-path reveal that
+ * replays every time it scrolls into view (and reverses out when scrolled
+ * past going back up), plus a gentle scrubbed parallax on the image inside.
+ * Mobile: a light fade, same replay behaviour. Reduced motion: static.
  *
  * `className` must give the box its size and `relative overflow-hidden`;
  * children (typically a `fill` next/image) fill the inner layer.
@@ -31,7 +32,12 @@ export function ImageReveal({ children, className }: { children: ReactNode; clas
               autoAlpha: 0,
               duration: 0.7,
               ease: "power3.out",
-              scrollTrigger: { trigger: el, start: "top 85%" },
+              scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                end: "bottom top",
+                toggleActions: "restart none none reverse",
+              },
             });
             return;
           }
@@ -43,7 +49,12 @@ export function ImageReveal({ children, className }: { children: ReactNode; clas
               clipPath: "inset(0% 0% 0% 0%)",
               duration: 1.1,
               ease: "power3.out",
-              scrollTrigger: { trigger: el, start: "top 80%" },
+              scrollTrigger: {
+                trigger: el,
+                start: "top 80%",
+                end: "bottom top",
+                toggleActions: "restart none none reverse",
+              },
             },
           );
           gsap.fromTo(

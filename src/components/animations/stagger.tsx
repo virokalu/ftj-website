@@ -14,7 +14,7 @@ const item: Variants = {
 
 /**
  * Parent for a group of <StaggerItem>s: when the group scrolls into view,
- * its items fade up one after another (0.1s apart). Plays once.
+ * its items fade up one after another (0.1s apart). Replays every time.
  */
 export function Stagger({ children, ...rest }: HTMLMotionProps<"div">) {
   return (
@@ -22,7 +22,7 @@ export function Stagger({ children, ...rest }: HTMLMotionProps<"div">) {
       variants={container}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.2 }}
       {...rest}
     >
       {children}
