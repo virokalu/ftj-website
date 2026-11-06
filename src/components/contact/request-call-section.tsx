@@ -84,8 +84,11 @@ export function RequestCallSection({
 }) {
   const searchParams = useSearchParams();
   const vehicleSlug = searchParams.get("vehicle") ?? undefined;
+  // Links that just want the form open (no vehicle context), e.g. FAQ's
+  // "Get in touch", use /contact?openForm=1 instead of a ?vehicle= slug.
+  const openForm = searchParams.get("openForm") === "1";
 
-  const [open, setOpen] = useState(() => Boolean(vehicleSlug));
+  const [open, setOpen] = useState(() => Boolean(vehicleSlug) || openForm);
   const [values, setValues] = useState<Values>(EMPTY_VALUES);
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<Errors>({});

@@ -131,6 +131,32 @@
       "cta": "Read more"
     }
   },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "getInTouch": "Get in touch",
+    "items": [
+      {
+        "question": "How does the inquiry process work?",
+        "answer": "Browse our showroom and press Inquire on any vehicle that interests you. Our team will reach out directly with full details, pricing and next steps — no obligation, no pressure."
+      },
+      {
+        "question": "Are all vehicles inspected before listing?",
+        "answer": "Yes. Every car in our showroom is personally inspected and verified before it is published, so what you see is exactly what you get."
+      },
+      {
+        "question": "Do you ship internationally, and who handles customs?",
+        "answer": "We export worldwide and manage the full logistics chain — shipping, documentation and customs clearance — so you don't have to navigate it yourself."
+      },
+      {
+        "question": "Why aren't prices shown on the website?",
+        "answer": "Every vehicle and every buyer's situation is different. Send an inquiry and our team will give you a straightforward, no-pressure quote tailored to you."
+      },
+      {
+        "question": "Can I request a specific car that isn't currently listed?",
+        "answer": "Absolutely. Get in touch with what you're looking for and our sourcing team will search our network to find it for you."
+      }
+    ]
+  },
   "footer": {
     "tagline": "Shifting dreams into reality",
     "links": {

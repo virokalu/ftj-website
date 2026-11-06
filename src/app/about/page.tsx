@@ -118,7 +118,7 @@ export default async function AboutPage() {
             {t("shipping.headline")}
           </h2>
           <p className="max-w-sm text-base leading-7 text-foreground-muted">{t("shipping.body")}</p>
-          <ReadMoreLink href="/contact">{t("shipping.cta")}</ReadMoreLink>
+          <ReadMoreLink href="/contact?openForm=1">{t("shipping.cta")}</ReadMoreLink>
         </FadeIn>
 
         <ImageReveal className="relative h-[360px] w-full overflow-hidden sm:h-[440px] lg:h-auto lg:min-h-[480px]">
