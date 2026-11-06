@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "home": "Home",
+    "inventory": "Inventory",
+    "contact": "Contact us",
+    "about": "About us",
+    "faq": "FAQ",
+    "login": "Login",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "home": {
+    "hero": {
+      "headline": "Shifting dreams into reality",
+      "cta": "Read more"
+    },
+    "segments": {
+      "jdm": {
+        "title": "JDM",
+        "cta": "Explore JDM"
+      },
+      "premium": {
+        "title": "Premium",
+        "cta": "Explore Premium"
+      }
+    },
+    "story": {
+      "eyebrow": "Our story",
+      "headline": "Built on trust, driven by passion",
+      "body": "FTJ Exports has spent over a decade sourcing rare and remarkable vehicles for collectors and enthusiasts across the globe. Every car we list is inspected, verified and ready for its next chapter.",
+      "cta": "Learn more about FTJ"
+    },
+    "fleet": {
+      "heading": "Featured Fleet",
+      "subheading": "A glimpse of what's currently in the showroom.",
+      "inquire": "Inquire",
+      "viewAll": "View full inventory",
+      "specs": {
+        "year": "YOM",
+        "model": "Model",
+        "engine": "Engine",
+        "displacement": "Displacement",
+        "transmission": "Transmission",
+        "fuelType": "Fuel type"
+      }
+    }
+  },
+  "inventory": {
+    "heading": "Choose your vehicle",
+    "availableWord": "Available",
+    "sortBy": "Sort by",
+    "sort": {
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "brandAsc": "Brand A–Z",
+      "priceAsc": "Price: Low to high",
+      "priceDesc": "Price: High to low"
+    },
+    "filter": {
+      "heading": "Filter",
+      "clearAll": "Clear all",
+      "price": "Price range",
+      "category": "Category",
+      "brand": "Brand",
+      "transmission": "Transmission",
+      "fuelType": "Fuel type"
+    },
+    "empty": "No vehicles match your filters."
+  },
+  "carDetail": {
+    "performanceHeading": "Performance",
+    "performanceCaption": "Specifications and performance details for this vehicle.",
+    "coloursHeading": "Colours",
+    "backToInventory": "Back to inventory"
+  },
+  "contact": {
+    "hero": {
+      "heading": "FTJ Headquarters Japan",
+      "address": "Yokohama, Kanagawa, Japan"
+    },
+    "info": {
+      "phoneLabel": "Telephone number",
+      "emailLabel": "Email",
+      "hours": "Our customer service is available as follows: from Monday to Friday, from 8:30 to 19:00 (CET). Saturday from 09:00 to 13:00 (CET). Contact our customer care service reserved for Ferrari clients and official dealers to receive information on services available.",
+      "getInTouch": "Get in touch"
+    },
+    "form": {
+      "heading": "Request a call?",
+      "close": "Close",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Telephone number",
+      "country": "Country",
+      "message": "Message",
+      "website": "Leave this field blank",
+      "submit": "Request",
+      "privacyNotice": "We only use these details to answer your enquiry.",
+      "privacyLink": "Privacy Policy",
+      "errors": {
+        "required": "This field is required.",
+        "invalidEmail": "Enter a valid email address.",
+        "invalidPhone": "Enter a valid phone number.",
+        "tooShort": "Please add a little more detail.",
+        "tooLong": "That's too long — please shorten it."
+      },
+      "states": {
+        "submitting": "Sending…",
+        "success": "Thank you. We have received your enquiry and will be in touch.",
+        "generalError": "Something went wrong with that submission. Please try again.",
+        "networkError": "We could not send your enquiry. Please try again, or contact us directly."
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "heading": "About Us"
+    },
+    "intro": "FTJ Exports connects collectors and enthusiasts worldwide with exceptional vehicles — sourced, inspected and shipped with uncompromising care.",
+    "values": {
+      "sectionHeading": "Our Values",
+      "headline": "Trust, built one car at a time",
+      "body": "Every vehicle in our showroom is personally inspected and verified before it reaches you. We believe a good deal is built on honesty, not pressure — no hidden fees, no surprises, just the right car and a straightforward process from inquiry to delivery."
+    },
+    "passion": {
+      "headline": "Built for speed, driven by passion",
+      "body": "Our team lives and breathes performance cars. That passion shows in how we source, describe and present every vehicle — with the detail and respect each one deserves."
+    },
+    "shipping": {
+      "headline": "Shipping, handled end to end",
+      "body": "From first inquiry to the moment your car arrives, we manage every step — paperwork, logistics and customs — so you don't have to.",
+      "cta": "Read more"
+    }
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "getInTouch": "Get in touch",
+    "items": [
+      {
+        "question": "How does the inquiry process work?",
+        "answer": "Browse our showroom and press Inquire on any vehicle that interests you. Our team will reach out directly with full details, pricing and next steps — no obligation, no pressure."
+      },
+      {
+        "question": "Are all vehicles inspected before listing?",
+        "answer": "Yes. Every car in our showroom is personally inspected and verified before it is published, so what you see is exactly what you get."
+      },
+      {
+        "question": "Do you ship internationally, and who handles customs?",
+        "answer": "We export worldwide and manage the full logistics chain — shipping, documentation and customs clearance — so you don't have to navigate it yourself."
+      },
+      {
+        "question": "Why aren't prices shown on the website?",
+        "answer": "Every vehicle and every buyer's situation is different. Send an inquiry and our team will give you a straightforward, no-pressure quote tailored to you."
+      },
+      {
+        "question": "Can I request a specific car that isn't currently listed?",
+        "answer": "Absolutely. Get in touch with what you're looking for and our sourcing team will search our network to find it for you."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Shifting dreams into reality",
+    "links": {
+      "language": "Language",
+      "faq": "FAQ",
+      "siteMap": "Site map",
+      "contact": "Contact",
+      "legal": "Legal",
+      "newsletter": "News letter",
+      "complaints": "Complaints",
+      "sustainability": "Sustainability"
+    },
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved."
+  }
+}
